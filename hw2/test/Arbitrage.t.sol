@@ -79,9 +79,126 @@ contract Arbitrage is Test {
         /**
          * Please add your solution below
          */
+         /*
+        address[] memory path = new address[](9);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        path[2] = address(tokenD);
+        path[3] = address(tokenC);
+        path[4] = address(tokenB);
+        path[5] = address(tokenA);
+        path[6] = address(tokenD);
+        path[7] = address(tokenC);
+        path[8] = address(tokenB);
+        */
+
+        // BDCEDCB
+
+        address[] memory path;
+        path = new address[](7);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        path[2] = address(tokenC);
+        path[3] = address(tokenE);
+        path[4] = address(tokenD);
+        path[5] = address(tokenC);
+        path[6] = address(tokenB);
+        
+        uint256[] memory amounts = router.swapExactTokensForTokens(
+            5 ether
+            , 20 ether
+            , path
+            , arbitrager /*msg.sender*/ /* ?or tokenB */
+            , block.timestamp
+        );
+        /*
+        address[] memory path = new address[](2);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenA);
+        path[1] = address(tokenD);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenD);
+        path[1] = address(tokenC);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenC);
+        path[1] = address(tokenB);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+        */
+
+        /*
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenA);
+        path[1] = address(tokenD);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenD);
+        path[1] = address(tokenC);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+
+        path[0] = address(tokenC);
+        path[1] = address(tokenB);
+        router.swapExactTokensForTokens(
+            5 ether, // 输入的 tokenB 数量
+            0, // 最小接收的 tokenB 数量，这里设为 0，表示接收任意数量的 tokenB
+            path, // 指定套利路径
+            address(this), // 接收套利收益的地址
+            block.timestamp +60// 交易截止时间
+        );
+        */
         /**
          * Please add your solution above
          */
+        
         uint256 tokensAfter = tokenB.balanceOf(arbitrager);
         assertGt(tokensAfter, 20 ether);
         console.log("After Arbitrage tokenB Balance: %s", tokensAfter);
